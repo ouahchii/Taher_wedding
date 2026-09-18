@@ -335,9 +335,10 @@
         </div>
         <div class="actions">
           <button class="btn btn-solid" id="send">Envoyer ma réponse</button>
+          <button class="btn" id="wa">Envoyer par WhatsApp</button>
           <button class="btn" id="copy">Copier ma réponse</button>
         </div>
-        <p class="note" id="note">Votre réponse s'ouvrira dans WhatsApp.</p>
+        <p class="note" id="note">Votre réponse nous parvient directement.</p>
       </div>
     </div>
   </section>
@@ -359,7 +360,9 @@ const CONFIG = {
   finISO:  "2026-11-02T03:00:00+01:00",
   lieu: "Salle La Marquise, Sousse, Tunisie",
   whatsapp: "21600000000",
-  photo: ""   // adresse d'une photo pour le fond, ex : "photo.jpg"
+  photo: "",  // adresse d'une photo pour le fond, ex : "photo.jpg"
+  ntfy: "https://ntfy.sh",
+  ntfyTopic: "taher-samar-rsvp-83vgflaan7"   // topic privé : à garder secret
 };
 /* ==================================== */
 
@@ -476,14 +479,46 @@ function message(){
   return t.trim();
 }
 
-document.getElementById('send').onclick = () => {
+function valide(){
   const nom = document.getElementById('nom').value.trim();
-  if (!reponse){ note.textContent = "Merci de choisir une réponse."; return; }
+  if (!reponse){ note.textContent = "Merci de choisir une réponse."; return null; }
   if (!nom){
     note.textContent = "Merci d'indiquer votre nom avant d'envoyer.";
     document.getElementById('nom').focus();
-    return;
+    return null;
   }
+  return nom;
+}
+
+const envoi = document.getElementById('send');
+envoi.onclick = async () => {
+  const nom = valide();
+  if (!nom) return;
+  envoi.disabled = true;
+  note.textContent = "Envoi en cours…";
+  const tag = reponse === "oui" ? "tada" : reponse === "peut" ? "thinking" : "pensive";
+  try{
+    const r = await fetch(CONFIG.ntfy, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        topic: CONFIG.ntfyTopic,
+        title: nom,
+        message: message(),
+        tags: [tag],
+        priority: reponse === "oui" ? 4 : 3
+      })
+    });
+    if (!r.ok) throw new Error(r.status);
+    note.textContent = "Merci, votre réponse est bien arrivée. À très bientôt.";
+  }catch(e){
+    envoi.disabled = false;
+    note.textContent = "L'envoi n'a pas abouti. Utilisez le bouton WhatsApp juste à côté.";
+  }
+};
+
+document.getElementById('wa').onclick = () => {
+  if (!valide()) return;
   window.open("https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(message()), "_blank");
   note.textContent = "Merci, à très bientôt.";
 };
