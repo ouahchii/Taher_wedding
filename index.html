@@ -19,7 +19,7 @@
 <meta name="theme-color" content="#0F0A06">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Josefin+Sans:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Josefin+Sans:wght@300;400&display=swap" rel="stylesheet">
 <style>
   :root{
     --noir:#0F0A06;
@@ -72,9 +72,9 @@
 
   /* ---------- ornements ---------- */
   .orn{display:flex; align-items:center; justify-content:center; gap:.85rem; color:var(--gold)}
-  .orn::before,.orn::after{content:""; height:1px; width:3.6rem; background:linear-gradient(90deg,transparent,var(--gold-line))}
-  .orn::after{background:linear-gradient(90deg,var(--gold-line),transparent)}
-  .orn span{font-size:.6rem; letter-spacing:.2em}
+  .orn::before,.orn::after{content:""; height:1px; width:5.2rem; background:linear-gradient(90deg,transparent,var(--gold-soft))}
+  .orn::after{background:linear-gradient(90deg,var(--gold-soft),transparent)}
+  .orn span{font-size:.95rem; letter-spacing:.2em; opacity:.9}
 
   .label{
     font-family:var(--sans); font-weight:300;
@@ -85,14 +85,15 @@
   /* ---------- hero ---------- */
   .hero{min-height:100svh; display:flex; flex-direction:column; justify-content:center; text-align:center; padding:4rem 0 2.6rem}
   .hero .label{margin-bottom:1.6rem}
-  .names{font-size:clamp(3.6rem,19vw,6.2rem); font-style:italic; font-weight:300; line-height:1.02; color:var(--cream)}
-  .names .amp{display:block; font-size:.38em; font-style:italic; color:var(--gold); margin:.28rem 0}
+  .names{font-size:clamp(3.8rem,20vw,7.4rem); font-style:italic; font-weight:500; line-height:1; color:var(--cream)}
+  .names .amp{display:block; font-size:.46em; font-weight:400; font-style:italic; color:var(--gold); margin:.2rem 0}
   .hero-sub{margin:0 0 1.9rem; font-style:italic; font-size:clamp(1.24rem,4.4vw,1.5rem); color:var(--cream)}
   .hero-date{
     font-family:var(--sans); font-size:clamp(.88rem,3.4vw,1.06rem);
     letter-spacing:.32em; text-indent:.32em; text-transform:uppercase;
     color:var(--cream); margin-top:2rem;
   }
+  .hero-date sup{font-size:.56em; vertical-align:.5em; text-transform:lowercase; letter-spacing:.1em}
   .hero-city{font-family:var(--sans); font-size:.72rem; letter-spacing:.34em; text-indent:.34em; text-transform:uppercase; color:var(--gold); margin-top:.9rem}
   .scroll{margin-top:2.6rem; display:flex; justify-content:center; color:var(--gold-soft)}
   .scroll i{
@@ -321,7 +322,7 @@
 
   <header class="hero">
     <p class="label rv" style="--d:.35s">Save the date</p>
-    <div class="orn rv" style="--d:.55s; margin-bottom:2.2rem" aria-hidden="true"><span>&#9670;</span></div>
+    <div class="orn rv" style="--d:.55s; margin-bottom:2.2rem" aria-hidden="true"><span>&#10070;</span></div>
     <p class="hero-sub rv" style="--d:.8s">Nous avons le plaisir de vous inviter à notre mariage</p>
     <h1 class="names rv" style="--d:1.05s">Taher<span class="amp">&amp;</span>Samar</h1>
     <p class="hero-date rv" style="--d:1.35s">Dimanche 1<sup>er</sup> Novembre 2026</p>
@@ -400,7 +401,7 @@
   </section>
 
   <footer>
-    <div class="orn rv" aria-hidden="true"><span>&#9670;</span></div>
+    <div class="orn rv" aria-hidden="true"><span>&#10070;</span></div>
     <p class="sig rv">Taher &amp; Samar</p>
     <p class="label rv" style="margin-top:1.2rem">Deux âmes, un même chemin</p>
     <p class="credit rv">Créé par Issam Ouahchi</p>
