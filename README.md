@@ -35,6 +35,12 @@ Tout est regroupé dans le bloc `CONFIG`, en haut du script d'`index.html` :
 | `lieu`     | adresse, utilisée par le lien Google Maps                  |
 | `photo`    | image de fond du hero ; vide = silhouette dessinée         |
 
+Adresse en ligne : <https://taher-samar-wedding.netlify.app/>
+
+Les métadonnées de partage (`og:url`, `og:image`, `canonical`) contiennent ce
+domaine **en dur** : si le site est renommé, il faut les reprendre dans le
+`<head>` d'`index.html`, faute de quoi l'aperçu des liens cassera.
+
 ## Recevoir les réponses (Netlify Forms)
 
 Le formulaire de réponse est un vrai `<form name="rsvp" data-netlify="true">`.
@@ -80,7 +86,9 @@ brisent la ligature des lettres ou produisent une fausse inclinaison.
 
 - `index.html` — page complète : styles, scripts, silhouette SVG
 - `assets/card.jpg` — la carte fermée, fendue en deux battants à l'ouverture
-- `tools/extract-card.py` — script qui a extrait cette image d'`index_nour.html`
+- `assets/og-image.jpg` — vignette 1200×630 pour l'aperçu des liens partagés
+- `tools/extract-card.py` — script qui a extrait `card.jpg` d'`index_nour.html`
+- `tools/make-og-image.py` — script qui recadre `card.jpg` en vignette
 - `netlify.toml` — publication et en-têtes de cache
 - `.nojekyll` — pour GitHub Pages
 
