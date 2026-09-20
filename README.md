@@ -59,9 +59,9 @@ brisent la ligature des lettres ou produisent une fausse inclinaison.
 
 ## Contenu
 
-- `index.html` — page complète : styles, scripts, silhouette et enveloppe SVG
-- `assets/envelope.mp4` — animation d'ouverture (2 s)
-- `assets/envelope-poster.jpg` — première image, affichée avant lecture
+- `index.html` — page complète : styles, scripts, silhouette SVG
+- `assets/card.jpg` — la carte fermée, fendue en deux battants à l'ouverture
+- `tools/extract-card.py` — script qui a extrait cette image d'`index_nour.html`
 - `vercel.json` — en-têtes de cache
 - `.nojekyll` — pour GitHub Pages
 
@@ -70,6 +70,11 @@ brisent la ligature des lettres ou produisent une fausse inclinaison.
 - Polices chargées depuis Google Fonts : Amiri (arabe), Cormorant Garamond, Josefin Sans
 - Musique générée par l'API Web Audio, aucun fichier audio
 - Réponses transmises par lien `wa.me`, dans la langue choisie par l'invité ; aucun serveur nécessaire
-- Animation d'ouverture muette : condition imposée par les navigateurs mobiles
+- Ouverture : la carte se fend en deux battants (`rotateY` sur ses deux moitiés),
+  pendant que la pièce s'assombrit et que deux barres descendent en letterbox
+- Le verrou de défilement double `overflow:hidden` d'un blocage de `wheel` et
+  `touchmove` : Safari mobile laisse défiler au doigt sans cela
+- Les moitiés de carte gardent des positions `left`/`right` physiques : elles
+  reconstituent une seule image et ne doivent pas suivre la direction du texte
 
 Créé par Issam Ouahchi
