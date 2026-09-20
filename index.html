@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Taher &amp; Samar — 1er novembre 2026</title>
-<meta name="description" content="Nous avons la joie de vous inviter à célébrer notre union. 1er novembre 2026 — Sousse, Tunisie">
-<meta property="og:title" content="Taher &amp; Samar — 1er novembre 2026">
-<meta property="og:description" content="Nous avons la joie de vous inviter à célébrer notre union. Salle La Marquise, Sousse.">
+<title>طاهر و سمر — 1 نوفمبر 2026</title>
+<meta name="description" content="يتشرفان بدعوتكم لحضور حفل زفافهما. 1 نوفمبر 2026 — قاعة لا ماركيز، سوسة، تونس">
+<meta property="og:title" content="طاهر و سمر — 1 نوفمبر 2026">
+<meta property="og:description" content="يتشرفان بدعوتكم لحضور حفل زفافهما. قاعة لا ماركيز، سوسة.">
 <meta property="og:type" content="website">
-<meta property="og:locale" content="fr_FR">
+<meta property="og:locale" content="ar_TN">
+<meta property="og:locale:alternate" content="fr_FR">
 <meta name="theme-color" content="#0F0A06">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,6 +25,7 @@
     --muted:rgba(250,249,247,.72);
     --serif:"Cormorant Garamond", Georgia, serif;
     --sans:"Josefin Sans", "Helvetica Neue", Arial, sans-serif;
+    --ar:"Amiri", "Traditional Arabic", "Times New Roman", serif;
   }
   *{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%; scroll-behavior:smooth}
@@ -88,8 +90,8 @@
 
   /* ---------- compte à rebours ---------- */
   .count{display:flex; text-align:center; margin-top:1.3rem}
-  .count div{flex:1; border-left:1px solid var(--gold-line); padding:0 .2rem}
-  .count div:first-child{border-left:0}
+  .count div{flex:1; border-inline-start:1px solid var(--gold-line); padding:0 .2rem}
+  .count div:first-child{border-inline-start:0}
   .count b{display:block; font-family:var(--serif); font-weight:300; font-size:clamp(2rem,8.5vw,2.6rem); color:var(--gold); line-height:1.25}
   .count small{font-family:var(--sans); font-size:.62rem; letter-spacing:.2em; text-transform:uppercase; color:var(--muted)}
 
@@ -194,6 +196,58 @@
   @keyframes breathe{0%,100%{opacity:.5}50%{opacity:1}}
   .tap.off{opacity:0; animation:none}
 
+  /* ---------- selecteur de langue ---------- */
+  .lang{
+    position:fixed; left:1.1rem; bottom:1.1rem; z-index:10;
+    height:3rem; padding:0 1.05rem; border-radius:999px; cursor:pointer;
+    display:grid; place-items:center;
+    font-family:var(--sans); font-weight:300; font-size:.68rem; letter-spacing:.18em;
+    border:1px solid rgba(184,148,90,.6); background:rgba(15,10,6,.7);
+    color:var(--gold); backdrop-filter:blur(10px);
+    transition:background .3s ease;
+  }
+  .lang:hover{background:rgba(184,148,90,.18)}
+  /* en francais, le bouton affiche « العربية » : police arabe, sans interlettrage */
+  html[lang="fr"] .lang{font-family:var(--ar); font-size:1rem; letter-spacing:normal}
+
+  /* ---------- arabe ---------- */
+  /* l'interlettrage et les majuscules brisent la ligature arabe : on les annule */
+  html[lang="ar"] body{font-family:var(--ar); font-size:1.1rem; line-height:1.95}
+  html[lang="ar"] .label,
+  html[lang="ar"] .hero-date,
+  html[lang="ar"] .hero-city,
+  html[lang="ar"] .count small,
+  html[lang="ar"] .step strong,
+  html[lang="ar"] .btn,
+  html[lang="ar"] .field label,
+  html[lang="ar"] footer .credit,
+  html[lang="ar"] .tap{
+    font-family:var(--ar); letter-spacing:normal; text-indent:0; text-transform:none;
+  }
+  /* Amiri n'a pas d'italique : le navigateur l'inclinerait artificiellement */
+  html[lang="ar"] .names,
+  html[lang="ar"] .story h2,
+  html[lang="ar"] .story p,
+  html[lang="ar"] .venue h3,
+  html[lang="ar"] footer .sig,
+  html[lang="ar"] .note{font-style:normal}
+  html[lang="ar"] .choice button,
+  html[lang="ar"] .field input,
+  html[lang="ar"] .field textarea{font-family:var(--ar)}
+  /* l'arabe se lit plus petit a taille egale : on compense */
+  html[lang="ar"] .label{font-size:.94rem}
+  html[lang="ar"] .btn{font-size:.96rem}
+  html[lang="ar"] .field label{font-size:.9rem}
+  html[lang="ar"] .count small{font-size:.8rem}
+  html[lang="ar"] .step strong{font-size:.98rem; letter-spacing:normal}
+  html[lang="ar"] .hero-date{font-size:1.08rem}
+  html[lang="ar"] .hero-city{font-size:1rem}
+  html[lang="ar"] footer .credit{font-size:.8rem}
+  html[lang="ar"] .tap{font-size:.9rem}
+  html[lang="ar"] .names{font-size:clamp(2.6rem,13vw,4rem); line-height:1.35}
+  html[lang="ar"] .names .amp{font-size:.5em; margin:.25rem 0}
+  html[lang="ar"] .story h2{line-height:1.5}
+
   :focus-visible{outline:1px solid var(--gold); outline-offset:3px}
 
   /* ---------- apparitions ---------- */
@@ -247,7 +301,8 @@
   </svg>
 </div>
 <div class="veil" aria-hidden="true"></div>
-<button class="music" id="music" aria-pressed="false" aria-label="Activer la musique">&#9834;</button>
+<button class="music" id="music" aria-pressed="false" aria-label="تشغيل الموسيقى">&#9834;</button>
+<button class="lang" id="lang" type="button">Français</button>
 
 <div class="cover" id="cover">
   <div class="env-holder">
@@ -255,99 +310,98 @@
            poster="assets/envelope-poster.jpg">
       <source src="assets/envelope.mp4" type="video/mp4">
     </video>
-    <p class="tap" id="tap">Appuyez n'importe où pour ouvrir</p>
+    <p class="tap" id="tap" data-t="tap">اضغطوا في أي مكان لفتح الدعوة</p>
   </div>
-  <button class="opener" id="env" aria-label="Ouvrir l'invitation"></button>
+  <button class="opener" id="env" aria-label="فتح الدعوة" data-t-aria="ariaEnv"></button>
 </div>
 
 <div class="wrap">
 
   <header class="hero">
     <p class="basmala rv" style="--d:.05s" lang="ar" dir="rtl">بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيم</p>
-    <p class="label rv" style="--d:.35s">Mariage</p>
-    <h1 class="names rv" style="--d:.6s">Taher<span class="amp">&amp;</span>Samar</h1>
-    <p class="hero-sub rv" style="--d:.9s">Ont la joie de vous inviter à célébrer leur union</p>
+    <p class="label rv" style="--d:.35s" data-t="kicker">حفل زفاف</p>
+    <h1 class="names rv" style="--d:.6s" data-t="names">طاهر<span class="amp">و</span>سمر</h1>
+    <p class="hero-sub rv" style="--d:.9s" data-t="sub">يتشرفان بدعوتكم لحضور حفل زفافهما</p>
     <div class="orn rv" style="--d:1.15s; margin-top:2.2rem" aria-hidden="true"><span>&#9670;</span></div>
-    <p class="hero-date rv" style="--d:1.3s">Le 1<sup>er</sup> novembre 2026 à 21h</p>
-    <p class="hero-city rv" style="--d:1.45s">Sousse</p>
+    <p class="hero-date rv" style="--d:1.3s" data-t="date">1 نوفمبر 2026 — على الساعة التاسعة ليلاً</p>
+    <p class="hero-city rv" style="--d:1.45s" data-t="city">سوسة</p>
     <div class="scroll rv" style="--d:1.7s" aria-hidden="true"><i></i></div>
   </header>
 
   <section>
-    <p class="label rv">Le grand jour approche</p>
+    <p class="label rv" data-t="cdTitle">اقترب الموعد</p>
     <div class="count rv" id="count">
-      <div><b data-j>—</b><small>jours</small></div>
-      <div><b data-h>—</b><small>heures</small></div>
-      <div><b data-m>—</b><small>minutes</small></div>
-      <div><b data-s>—</b><small>secondes</small></div>
+      <div><b data-j>—</b><small data-t="cdD">يوم</small></div>
+      <div><b data-h>—</b><small data-t="cdH">ساعة</small></div>
+      <div><b data-m>—</b><small data-t="cdM">دقيقة</small></div>
+      <div><b data-s>—</b><small data-t="cdS">ثانية</small></div>
     </div>
   </section>
 
   <section class="story">
-    <h2 class="rv">L'histoire derrière nos prénoms</h2>
-    <p class="rv">Nos deux chemins se sont croisés au bon moment. Depuis, chaque étape nous a rapprochés jusqu'à ce grand jour.</p>
-    <p class="rv">Le 1<sup>er</sup> novembre symbolise pour nous un nouveau départ, une date choisie avec le cœur pour célébrer notre union.</p>
+    <h2 class="rv" data-t="storyTitle">قصّتنا</h2>
+    <p class="rv" data-t="story1">التقى طريقانا في الوقت المناسب، ومنذ ذلك الحين قرّبتنا كل خطوة من هذا اليوم الكبير.</p>
+    <p class="rv" data-t="story2">يمثّل الأول من نوفمبر بدايةً جديدة بالنسبة إلينا، تاريخٌ اخترناه بالقلب للاحتفال بزفافنا.</p>
     <div class="orn rv" style="margin-top:2.4rem" aria-hidden="true"><span>&#9670;</span></div>
   </section>
 
   <section>
-    <p class="label rv">Déroulement de la soirée</p>
+    <p class="label rv" data-t="progTitle">برنامج السهرة</p>
     <div class="steps">
-      <div class="step rv"><b>21h</b><strong>Contrat de mariage</strong></div>
-      <div class="step rv"><b>21h30</b><strong>Célébration</strong></div>
+      <div class="step rv"><b data-t="t1">21:00</b><strong data-t="step1">عقد القران</strong></div>
+      <div class="step rv"><b data-t="t2">21:30</b><strong data-t="step2">الحفل</strong></div>
     </div>
   </section>
 
   <section class="venue">
-    <p class="label rv">Le lieu</p>
-    <h3 class="rv">Salle La Marquise</h3>
-    <address class="rv">Sousse, Tunisie</address>
+    <p class="label rv" data-t="venueTitle">المكان</p>
+    <h3 class="rv" data-t="venueName">قاعة لا ماركيز</h3>
+    <address class="rv" data-t="venueAddr">سوسة، تونس</address>
     <div class="actions rv">
-      <a class="btn" id="mapLink" href="#" target="_blank" rel="noopener">Ouvrir l'itinéraire</a>
-      <a class="btn" id="calLink" href="#" target="_blank" rel="noopener">Ajouter à mon agenda</a>
+      <a class="btn" id="mapLink" href="#" target="_blank" rel="noopener" data-t="map">الاتجاهات على الخريطة</a>
+      <a class="btn" id="calLink" href="#" target="_blank" rel="noopener" data-t="cal">إضافة إلى التقويم</a>
     </div>
   </section>
 
   <section>
-    <p class="label rv">Votre réponse</p>
+    <p class="label rv" data-t="rsvpTitle">ردّكم</p>
     <div style="margin-top:1.4rem">
       <div class="field rv">
-        <label id="lblRep">Serez-vous des nôtres&nbsp;?</label>
+        <label id="lblRep" data-t="rsvpQ">هل ستشرّفوننا بحضوركم؟</label>
         <div class="choice" role="group" aria-labelledby="lblRep">
-          <button type="button" data-rep="oui" aria-pressed="false">Oui, avec joie</button>
-          <button type="button" data-rep="peut" aria-pressed="false">Peut-être</button>
-          <button type="button" data-rep="non" aria-pressed="false">Je ne pourrai pas</button>
+          <button type="button" data-rep="oui" aria-pressed="false" data-t="yes">نعم، بكل سرور</button>
+          <button type="button" data-rep="peut" aria-pressed="false" data-t="maybe">ربّما</button>
+          <button type="button" data-rep="non" aria-pressed="false" data-t="no">لن أتمكّن للأسف</button>
         </div>
       </div>
 
       <div class="rest" id="rest">
         <div class="field">
-          <label for="nom">Votre nom</label>
-          <input id="nom" type="text" autocomplete="name" placeholder="Prénom et nom">
+          <label for="nom" data-t="lblName">الاسم</label>
+          <input id="nom" type="text" autocomplete="name" placeholder="الاسم واللقب" data-t-ph="phName">
         </div>
         <div class="field" id="nbField">
-          <label for="nb">Nombre de personnes</label>
+          <label for="nb" data-t="lblNb">عدد الأشخاص</label>
           <input id="nb" type="number" min="1" max="10" value="1" inputmode="numeric">
         </div>
         <div class="field">
-          <label for="mot">Un petit mot</label>
-          <textarea id="mot" placeholder="Optionnel"></textarea>
+          <label for="mot" data-t="lblWord">كلمة بمناسبة الفرح</label>
+          <textarea id="mot" placeholder="اختياري" data-t-ph="phWord"></textarea>
         </div>
         <div class="actions">
-          <button class="btn btn-solid" id="send">Envoyer ma réponse</button>
-          <button class="btn" id="wa">Envoyer par WhatsApp</button>
-          <button class="btn" id="copy">Copier ma réponse</button>
+          <button class="btn btn-solid" id="send" data-t="send">إرسال الرد</button>
+          <button class="btn" id="copy" data-t="copy">نسخ الرد</button>
         </div>
-        <p class="note" id="note">Votre réponse nous parvient directement.</p>
+        <p class="note" id="note" data-t="noteIdle">سيُفتح ردّكم في واتساب.</p>
       </div>
     </div>
   </section>
 
   <footer>
     <div class="orn rv" aria-hidden="true"><span>&#9670;</span></div>
-    <p class="sig rv">Taher &amp; Samar</p>
-    <p class="label rv" style="margin-top:1.2rem">Deux âmes, un même chemin</p>
-    <p class="credit rv">Créé par Issam Ouahchi</p>
+    <p class="sig rv" data-t="sig">طاهر و سمر</p>
+    <p class="label rv" style="margin-top:1.2rem" data-t="motto">روحان في طريق واحد</p>
+    <p class="credit rv" data-t="credit">من إنجاز عصام الوحشي</p>
   </footer>
 
 </div>
@@ -359,12 +413,112 @@ const CONFIG = {
   dateISO: "2026-11-01T21:00:00+01:00",
   finISO:  "2026-11-02T03:00:00+01:00",
   lieu: "Salle La Marquise, Sousse, Tunisie",
+  mariesAr: "طاهر و سمر",
   whatsapp: "21600000000",
-  photo: "",  // adresse d'une photo pour le fond, ex : "photo.jpg"
-  ntfy: "https://ntfy.sh",
-  ntfyTopic: "taher-samar-rsvp-83vgflaan7"   // topic privé : à garder secret
+  photo: ""   // adresse d'une photo pour le fond, ex : "photo.jpg"
 };
 /* ==================================== */
+
+/* ============ langues ============ */
+/* L'arabe est écrit directement dans le HTML : c'est la version par défaut,
+   affichée même si le JavaScript échoue. Le dictionnaire ci-dessous ne porte
+   que le français ; l'arabe est relevé dans le DOM au chargement. */
+const FR = {
+  tap:"Appuyez n'importe où pour ouvrir",
+  kicker:"Mariage",
+  names:'Taher<span class="amp">&amp;</span>Samar',
+  sub:"Ont la joie de vous inviter à célébrer leur union",
+  date:"Le 1<sup>er</sup> novembre 2026 à 21h",
+  city:"Sousse",
+  cdTitle:"Le grand jour approche",
+  cdD:"jours", cdH:"heures", cdM:"minutes", cdS:"secondes",
+  storyTitle:"L'histoire derrière nos prénoms",
+  story1:"Nos deux chemins se sont croisés au bon moment. Depuis, chaque étape nous a rapprochés jusqu'à ce grand jour.",
+  story2:"Le 1<sup>er</sup> novembre symbolise pour nous un nouveau départ, une date choisie avec le cœur pour célébrer notre union.",
+  progTitle:"Déroulement de la soirée",
+  t1:"21h", t2:"21h30",
+  step1:"Contrat de mariage", step2:"Célébration",
+  venueTitle:"Le lieu",
+  venueName:"Salle La Marquise",
+  venueAddr:"Sousse, Tunisie",
+  map:"Ouvrir l'itinéraire",
+  cal:"Ajouter à mon agenda",
+  rsvpTitle:"Votre réponse",
+  rsvpQ:"Serez-vous des nôtres&nbsp;?",
+  yes:"Oui, avec joie", maybe:"Peut-être", no:"Je ne pourrai pas",
+  lblName:"Votre nom", phName:"Prénom et nom",
+  lblNb:"Nombre de personnes",
+  lblWord:"Un petit mot", phWord:"Optionnel",
+  send:"Envoyer ma réponse", copy:"Copier ma réponse",
+  noteIdle:"Votre réponse s'ouvrira dans WhatsApp.",
+  sig:"Taher &amp; Samar",
+  motto:"Deux âmes, un même chemin",
+  credit:"Créé par Issam Ouahchi",
+  ariaEnv:"Ouvrir l'invitation"
+};
+const AR = {};   /* relevé depuis le HTML au chargement */
+
+/* phrases construites en JavaScript, dans les deux langues */
+const TXT = {
+  fr:{
+    title:"Taher & Samar — 1er novembre 2026",
+    pickOne:"Merci de choisir une réponse.",
+    needName:"Merci d'indiquer votre nom avant d'envoyer.",
+    thanks:"Merci, à très bientôt.",
+    copied:"Réponse copiée, vous pouvez la coller où vous voulez.",
+    copyFail:"La copie n'a pas fonctionné, utilisez le bouton WhatsApp.",
+    musicOn:"Activer la musique", musicOff:"Couper la musique",
+    msgHead:() => "Réponse pour le mariage de " + CONFIG.maries,
+    msgName:"Nom", msgPres:"Présence", msgNb:"Nombre de personnes", msgWord:"Message",
+    presYes:"oui", presMaybe:"à confirmer", presNo:"non, avec regrets"
+  },
+  ar:{
+    title:"طاهر و سمر — 1 نوفمبر 2026",
+    pickOne:"يرجى اختيار أحد الردود.",
+    needName:"يرجى كتابة الاسم قبل الإرسال.",
+    thanks:"شكراً لكم، إلى اللقاء قريباً.",
+    copied:"تم نسخ الرد، يمكنكم لصقه أينما شئتم.",
+    copyFail:"تعذّر النسخ، استعملوا زر واتساب.",
+    musicOn:"تشغيل الموسيقى", musicOff:"إيقاف الموسيقى",
+    msgHead:() => "ردّ على دعوة زفاف " + CONFIG.mariesAr,
+    msgName:"الاسم", msgPres:"الحضور", msgNb:"عدد الأشخاص", msgWord:"رسالة",
+    presYes:"نعم", presMaybe:"غير مؤكّد", presNo:"لن أتمكّن، مع الاعتذار"
+  }
+};
+
+let langue = "ar";
+const btnLangue = document.getElementById('lang');
+
+document.querySelectorAll('[data-t]').forEach(el => AR[el.dataset.t] = el.innerHTML);
+document.querySelectorAll('[data-t-ph]').forEach(el => AR[el.dataset.tPh] = el.placeholder);
+document.querySelectorAll('[data-t-aria]').forEach(el => AR[el.dataset.tAria] = el.getAttribute('aria-label'));
+
+function setLangue(l){
+  langue = l;
+  const D = (l === 'fr') ? FR : AR;
+  const root = document.documentElement;
+  root.lang = l;
+  root.dir = (l === 'ar') ? 'rtl' : 'ltr';
+  document.title = TXT[l].title;
+  document.querySelectorAll('[data-t]').forEach(el => {
+    if (D[el.dataset.t] != null) el.innerHTML = D[el.dataset.t];
+  });
+  document.querySelectorAll('[data-t-ph]').forEach(el => {
+    if (D[el.dataset.tPh] != null) el.placeholder = D[el.dataset.tPh];
+  });
+  document.querySelectorAll('[data-t-aria]').forEach(el => {
+    if (D[el.dataset.tAria] != null) el.setAttribute('aria-label', D[el.dataset.tAria]);
+  });
+  btnLangue.textContent = (l === 'ar') ? "Français" : "العربية";
+  if (window.syncMusique) window.syncMusique();
+  try{ localStorage.setItem('langue', l); }catch(e){}
+}
+
+btnLangue.onclick = () => setLangue(langue === 'ar' ? 'fr' : 'ar');
+let langueGardee = null;
+try{ langueGardee = localStorage.getItem('langue'); }catch(e){}
+setLangue(langueGardee === 'fr' ? 'fr' : 'ar');
+/* ================================== */
 
 if (CONFIG.photo){
   document.getElementById('bg').style.backgroundImage = 'url("' + CONFIG.photo + '")';
@@ -468,67 +622,37 @@ function setReponse(v){
 boutons.forEach(b => b.onclick = () => setReponse(b.dataset.rep));
 
 function message(){
+  const T = TXT[langue];
   const nom = document.getElementById('nom').value.trim() || "—";
   const mot = document.getElementById('mot').value.trim();
-  let t = "Réponse pour le mariage de " + CONFIG.maries + "\nNom : " + nom + "\n";
-  const nb = document.getElementById('nb').value || 1;
-  if (reponse === "oui")       t += "Présence : oui\nNombre de personnes : " + nb + "\n";
-  else if (reponse === "peut") t += "Présence : à confirmer\nNombre de personnes prévu : " + nb + "\n";
-  else                         t += "Présence : non, avec regrets\n";
-  if (mot) t += "Message : " + mot;
+  const nb  = document.getElementById('nb').value || 1;
+  let t = T.msgHead() + "\n" + T.msgName + " : " + nom + "\n";
+  if (reponse === "oui")       t += T.msgPres + " : " + T.presYes   + "\n" + T.msgNb + " : " + nb + "\n";
+  else if (reponse === "peut") t += T.msgPres + " : " + T.presMaybe + "\n" + T.msgNb + " : " + nb + "\n";
+  else                         t += T.msgPres + " : " + T.presNo + "\n";
+  if (mot) t += T.msgWord + " : " + mot;
   return t.trim();
 }
 
-function valide(){
+document.getElementById('send').onclick = () => {
+  const T = TXT[langue];
   const nom = document.getElementById('nom').value.trim();
-  if (!reponse){ note.textContent = "Merci de choisir une réponse."; return null; }
+  if (!reponse){ note.textContent = T.pickOne; return; }
   if (!nom){
-    note.textContent = "Merci d'indiquer votre nom avant d'envoyer.";
+    note.textContent = T.needName;
     document.getElementById('nom').focus();
-    return null;
+    return;
   }
-  return nom;
-}
-
-const envoi = document.getElementById('send');
-envoi.onclick = async () => {
-  const nom = valide();
-  if (!nom) return;
-  envoi.disabled = true;
-  note.textContent = "Envoi en cours…";
-  const tag = reponse === "oui" ? "tada" : reponse === "peut" ? "thinking" : "pensive";
-  try{
-    const r = await fetch(CONFIG.ntfy, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        topic: CONFIG.ntfyTopic,
-        title: nom,
-        message: message(),
-        tags: [tag],
-        priority: reponse === "oui" ? 4 : 3
-      })
-    });
-    if (!r.ok) throw new Error(r.status);
-    note.textContent = "Merci, votre réponse est bien arrivée. À très bientôt.";
-  }catch(e){
-    envoi.disabled = false;
-    note.textContent = "L'envoi n'a pas abouti. Utilisez le bouton WhatsApp juste à côté.";
-  }
-};
-
-document.getElementById('wa').onclick = () => {
-  if (!valide()) return;
   window.open("https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(message()), "_blank");
-  note.textContent = "Merci, à très bientôt.";
+  note.textContent = T.thanks;
 };
 
 document.getElementById('copy').onclick = async () => {
   try{
     await navigator.clipboard.writeText(message());
-    note.textContent = "Réponse copiée, vous pouvez la coller où vous voulez.";
+    note.textContent = TXT[langue].copied;
   }catch(e){
-    note.textContent = "La copie n'a pas fonctionné, utilisez le bouton WhatsApp.";
+    note.textContent = TXT[langue].copyFail;
   }
 };
 
@@ -594,6 +718,9 @@ document.getElementById('copy').onclick = async () => {
     }
     timer = setTimeout(schedule, 90);
   }
+  window.syncMusique = () => {
+    btn.setAttribute('aria-label', on ? TXT[langue].musicOff : TXT[langue].musicOn);
+  };
   btn.onclick = () => {
     if (!ctx){
       ctx = new (window.AudioContext || window.webkitAudioContext)();
@@ -606,7 +733,7 @@ document.getElementById('copy').onclick = async () => {
     ctx.resume();
     on = !on;
     btn.setAttribute('aria-pressed', on);
-    btn.setAttribute('aria-label', on ? 'Couper la musique' : 'Activer la musique');
+    window.syncMusique();
     btn.textContent = on ? '\u275A\u275A' : '\u266A';
     master.gain.cancelScheduledValues(ctx.currentTime);
     master.gain.linearRampToValueAtTime(on ? .5 : 0, ctx.currentTime + (on ? 1.2 : .6));
