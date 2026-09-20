@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c ' *)",
+      "Bash(curl -s -o /dev/null -w \"POST rsvp : HTTP %{http_code}\\\\n\" -X POST https://taher-samar-wedding.netlify.app/ -H \"Content-Type: application/x-www-form-urlencoded\" --data-urlencode \"form-name=rsvp\" --data-urlencode \"bot-field=robot\" --data-urlencode \"nom=TEST\")"
+    ]
+  }
+}
