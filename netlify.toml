@@ -1,0 +1,15 @@
+# Site statique : rien à construire, on publie la racine telle quelle.
+[build]
+  publish = "."
+
+# La carte ne changera plus : cache long.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# La page porte toute la logique : une correction doit être visible tout de suite.
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"

@@ -4,22 +4,23 @@ Invitation de mariage, page unique, sans dépendance à installer.
 1er novembre 2026, Salle La Marquise, Sousse.
 Bilingue : **arabe par défaut**, français accessible d'un bouton.
 
-## Mise en ligne
+## Mise en ligne (Netlify)
 
-### Vercel (recommandé)
-
-1. [vercel.com/new](https://vercel.com/new) → **Import Git Repository** → choisir ce dépôt.
-2. Framework Preset : **Other**. Build Command et Output Directory : laisser vides.
+1. [app.netlify.com/start/repos](https://app.netlify.com/start/repos) → autoriser
+   GitHub → choisir ce dépôt.
+2. Build command : **vide**. Publish directory : **`.`** — `netlify.toml` les fixe
+   déjà, l'interface doit simplement ne pas les contredire.
 3. **Deploy**. Chaque `git push` sur `main` redéploie automatiquement.
+4. *Site configuration → Forms → Form notifications* : ajouter une notification
+   par e-mail. **Sans cela, les réponses n'arrivent que dans le tableau de bord.**
 
-`vercel.json` ne fait qu'une chose : mettre `assets/` en cache long et `index.html`
-en revalidation permanente, pour qu'une correction soit visible tout de suite.
+`netlify.toml` ne fait que deux choses : publier la racine, et mettre `assets/`
+en cache long avec `index.html` en revalidation permanente, pour qu'une
+correction soit visible tout de suite.
 
-### GitHub Pages
-
-Settings → Pages → Source : `Deploy from a branch`, branche `main`, dossier `/ (root)`.
-L'adresse `https://<utilisateur>.github.io/<dépôt>/` est active après une minute.
-Le fichier `.nojekyll` est déjà là ; `vercel.json` y est simplement ignoré.
+> Le site dépend désormais de Netlify pour la collecte des réponses. Sur un autre
+> hébergeur, la page s'afficherait normalement mais le formulaire ne collecterait
+> rien : c'est pourquoi `vercel.json` a été retiré plutôt que laissé en place.
 
 ## Ce qu'il faut modifier
 
@@ -32,11 +33,29 @@ Tout est regroupé dans le bloc `CONFIG`, en haut du script d'`index.html` :
 | `dateISO`  | date et heure, utilisée par le compte à rebours            |
 | `finISO`   | fin de la soirée, pour le lien agenda                      |
 | `lieu`     | adresse, utilisée par le lien Google Maps                  |
-| `whatsapp` | numéro qui reçoit les réponses, indicatif compris, sans `+`|
 | `photo`    | image de fond du hero ; vide = silhouette dessinée         |
 
-> ⚠️ `whatsapp` vaut encore `21600000000`, un numéro de démonstration.
-> **À remplacer avant de diffuser le lien**, sinon les réponses ne partent nulle part.
+## Recevoir les réponses (Netlify Forms)
+
+Le formulaire de réponse est un vrai `<form name="rsvp" data-netlify="true">`.
+Netlify le repère **en analysant le HTML au moment du déploiement** : il doit
+donc rester écrit en dur dans la page, jamais construit en JavaScript.
+
+Les réponses arrivent dans *Site configuration → Forms*, et par e-mail si la
+notification est configurée. Champs transmis : `presence` (`oui` / `peut` /
+`non`), `nom`, `nb`, `mot`, et `langue` — la langue dans laquelle l'invité a
+rempli le formulaire, pratique pour savoir comment lui répondre.
+
+L'envoi se fait en arrière-plan (`fetch` vers `/`), pour que l'invité reste sur
+l'invitation au lieu d'atterrir sur l'accusé de réception de Netlify. Le champ
+`bot-field`, caché, sert d'appât anti-spam.
+
+> ⚠️ Le forfait gratuit plafonne à **100 réponses par mois**. Les réponses d'un
+> mariage se concentrent sur les semaines qui précèdent : surveillez le compteur
+> à l'approche de la date, quitte à passer au forfait payant ce mois-là. Le
+> bouton « Copier ma réponse » reste le filet de secours.
+
+En local, l'envoi échoue forcément : `POST /` n'existe que sur Netlify.
 
 ## Les deux langues
 
@@ -62,14 +81,14 @@ brisent la ligature des lettres ou produisent une fausse inclinaison.
 - `index.html` — page complète : styles, scripts, silhouette SVG
 - `assets/card.jpg` — la carte fermée, fendue en deux battants à l'ouverture
 - `tools/extract-card.py` — script qui a extrait cette image d'`index_nour.html`
-- `vercel.json` — en-têtes de cache
+- `netlify.toml` — publication et en-têtes de cache
 - `.nojekyll` — pour GitHub Pages
 
 ## Notes techniques
 
 - Polices chargées depuis Google Fonts : Amiri (arabe), Cormorant Garamond, Josefin Sans
 - Musique générée par l'API Web Audio, aucun fichier audio
-- Réponses transmises par lien `wa.me`, dans la langue choisie par l'invité ; aucun serveur nécessaire
+- Réponses collectées par Netlify Forms, sans serveur à héberger
 - Ouverture : la carte se fend en deux battants (`rotateY` sur ses deux moitiés),
   pendant que la pièce s'assombrit et que deux barres descendent en letterbox
 - Le verrou de défilement double `overflow:hidden` d'un blocage de `wheel` et

@@ -416,7 +416,17 @@
 
   <section>
     <p class="label rv" data-t="rsvpTitle">ردّكم</p>
-    <div style="margin-top:1.4rem">
+    <!-- Netlify repère ce formulaire en analysant le HTML au déploiement :
+         il doit donc exister en dur dans la page, pas être construit en JS. -->
+    <form name="rsvp" method="POST" data-netlify="true"
+          data-netlify-honeypot="bot-field" style="margin-top:1.4rem">
+      <input type="hidden" name="form-name" value="rsvp">
+      <input type="hidden" name="presence" id="presence">
+      <input type="hidden" name="langue" id="langueChamp" value="ar">
+      <p hidden aria-hidden="true">
+        <label>Ne pas remplir : <input name="bot-field" tabindex="-1" autocomplete="off"></label>
+      </p>
+
       <div class="field rv">
         <label id="lblRep" data-t="rsvpQ">هل ستشرّفوننا بحضوركم؟</label>
         <div class="choice" role="group" aria-labelledby="lblRep">
@@ -429,23 +439,24 @@
       <div class="rest" id="rest">
         <div class="field">
           <label for="nom" data-t="lblName">الاسم</label>
-          <input id="nom" type="text" autocomplete="name" placeholder="الاسم واللقب" data-t-ph="phName">
+          <input id="nom" name="nom" type="text" autocomplete="name" placeholder="الاسم واللقب" data-t-ph="phName">
         </div>
         <div class="field" id="nbField">
           <label for="nb" data-t="lblNb">عدد الأشخاص</label>
-          <input id="nb" type="number" min="1" max="10" value="1" inputmode="numeric">
+          <input id="nb" name="nb" type="number" min="1" max="10" value="1" inputmode="numeric">
         </div>
         <div class="field">
           <label for="mot" data-t="lblWord">كلمة بمناسبة الفرح</label>
-          <textarea id="mot" placeholder="اختياري" data-t-ph="phWord"></textarea>
+          <textarea id="mot" name="mot" placeholder="اختياري" data-t-ph="phWord"></textarea>
         </div>
         <div class="actions">
-          <button class="btn btn-solid" id="send" data-t="send">إرسال الرد</button>
-          <button class="btn" id="copy" data-t="copy">نسخ الرد</button>
+          <!-- sans type explicite, « Copier » vaudrait submit et enverrait le formulaire -->
+          <button class="btn btn-solid" id="send" type="submit" data-t="send">إرسال الرد</button>
+          <button class="btn" id="copy" type="button" data-t="copy">نسخ الرد</button>
         </div>
-        <p class="note" id="note" data-t="noteIdle">سيُفتح ردّكم في واتساب.</p>
+        <p class="note" id="note" data-t="noteIdle">ردّكم يصلنا مباشرةً.</p>
       </div>
-    </div>
+    </form>
   </section>
 
   <footer>
@@ -465,7 +476,6 @@ const CONFIG = {
   finISO:  "2026-11-02T03:00:00+01:00",
   lieu: "Salle La Marquise, Sousse, Tunisie",
   mariesAr: "طاهر و سمر",
-  whatsapp: "21600000000",
   photo: ""   // adresse d'une photo pour le fond, ex : "photo.jpg"
 };
 /* ==================================== */
@@ -501,7 +511,7 @@ const FR = {
   lblNb:"Nombre de personnes",
   lblWord:"Un petit mot", phWord:"Optionnel",
   send:"Envoyer ma réponse", copy:"Copier ma réponse",
-  noteIdle:"Votre réponse s'ouvrira dans WhatsApp.",
+  noteIdle:"Votre réponse nous parvient directement.",
   sig:"Taher &amp; Samar",
   motto:"Deux âmes, un même chemin",
   credit:"Créé par Issam Ouahchi",
@@ -515,9 +525,11 @@ const TXT = {
     title:"Taher & Samar — 1er novembre 2026",
     pickOne:"Merci de choisir une réponse.",
     needName:"Merci d'indiquer votre nom avant d'envoyer.",
-    thanks:"Merci, à très bientôt.",
+    sending:"Envoi en cours…",
+    thanks:"Merci, votre réponse est bien arrivée. À très bientôt.",
+    sendFail:"L'envoi n'a pas abouti. Réessayez, ou utilisez le bouton « Copier ma réponse ».",
     copied:"Réponse copiée, vous pouvez la coller où vous voulez.",
-    copyFail:"La copie n'a pas fonctionné, utilisez le bouton WhatsApp.",
+    copyFail:"La copie n'a pas fonctionné, recopiez votre réponse à la main.",
     musicOn:"Activer la musique", musicOff:"Couper la musique",
     msgHead:() => "Réponse pour le mariage de " + CONFIG.maries,
     msgName:"Nom", msgPres:"Présence", msgNb:"Nombre de personnes", msgWord:"Message",
@@ -527,9 +539,11 @@ const TXT = {
     title:"طاهر و سمر — 1 نوفمبر 2026",
     pickOne:"يرجى اختيار أحد الردود.",
     needName:"يرجى كتابة الاسم قبل الإرسال.",
-    thanks:"شكراً لكم، إلى اللقاء قريباً.",
+    sending:"جارٍ الإرسال…",
+    thanks:"شكراً لكم، وصلنا ردّكم. إلى اللقاء قريباً.",
+    sendFail:"تعذّر الإرسال. أعيدوا المحاولة، أو استعملوا زر «نسخ الرد».",
     copied:"تم نسخ الرد، يمكنكم لصقه أينما شئتم.",
-    copyFail:"تعذّر النسخ، استعملوا زر واتساب.",
+    copyFail:"تعذّر النسخ، انسخوا ردّكم يدويّاً.",
     musicOn:"تشغيل الموسيقى", musicOff:"إيقاف الموسيقى",
     msgHead:() => "ردّ على دعوة زفاف " + CONFIG.mariesAr,
     msgName:"الاسم", msgPres:"الحضور", msgNb:"عدد الأشخاص", msgWord:"رسالة",
@@ -561,6 +575,8 @@ function setLangue(l){
     if (D[el.dataset.tAria] != null) el.setAttribute('aria-label', D[el.dataset.tAria]);
   });
   btnLangue.textContent = (l === 'ar') ? "Français" : "العربية";
+  const champLangue = document.getElementById('langueChamp');
+  if (champLangue) champLangue.value = l;
   if (window.syncMusique) window.syncMusique();
   try{ localStorage.setItem('langue', l); }catch(e){}
 }
@@ -662,6 +678,7 @@ const boutons = document.querySelectorAll('.choice [data-rep]'),
 const rest = document.getElementById('rest');
 function setReponse(v){
   reponse = v;
+  document.getElementById('presence').value = v;
   boutons.forEach(b => b.setAttribute('aria-pressed', b.dataset.rep === v));
   nbField.style.display = (v === 'non') ? 'none' : '';
   if (!rest.classList.contains('show')){
@@ -684,7 +701,12 @@ function message(){
   return t.trim();
 }
 
-document.getElementById('send').onclick = () => {
+/* Envoi en arriere-plan : l'invite reste sur l'invitation au lieu d'atterrir
+   sur l'accuse de reception de Netlify. */
+const form = document.querySelector('form[name="rsvp"]');
+const envoi = document.getElementById('send');
+form.addEventListener('submit', async e => {
+  e.preventDefault();
   const T = TXT[langue];
   const nom = document.getElementById('nom').value.trim();
   if (!reponse){ note.textContent = T.pickOne; return; }
@@ -693,9 +715,21 @@ document.getElementById('send').onclick = () => {
     document.getElementById('nom').focus();
     return;
   }
-  window.open("https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(message()), "_blank");
-  note.textContent = T.thanks;
-};
+  envoi.disabled = true;
+  note.textContent = T.sending;
+  try{
+    const r = await fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(new FormData(form)).toString()
+    });
+    if (!r.ok) throw new Error(r.status);
+    note.textContent = T.thanks;
+  }catch(err){
+    envoi.disabled = false;
+    note.textContent = T.sendFail;
+  }
+});
 
 document.getElementById('copy').onclick = async () => {
   try{
