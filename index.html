@@ -85,13 +85,22 @@
   /* ---------- hero ---------- */
   .hero{min-height:100svh; display:flex; flex-direction:column; justify-content:center; text-align:center; padding:4rem 0 2.6rem}
   .hero .label{margin-bottom:1.6rem}
-  .names{font-size:clamp(3rem,15vw,4.6rem); font-style:italic; font-weight:300; line-height:1.08; color:var(--cream)}
-  .names .amp{display:block; font-size:.42em; font-style:normal; color:var(--gold); margin:.5rem 0}
-  .hero-sub{margin-top:1.4rem; font-size:1.22rem; color:var(--muted)}
-  .hero-date{font-family:var(--sans); font-size:.92rem; letter-spacing:.24em; text-indent:.24em; color:var(--cream); margin-top:1.1rem}
-  .hero-city{font-family:var(--sans); font-size:.72rem; letter-spacing:.34em; text-indent:.34em; color:var(--gold); margin-top:.7rem}
-  .scroll{margin-top:2.2rem; display:flex; flex-direction:column; align-items:center; gap:.7rem; color:var(--gold-soft)}
-  .scroll i{display:block; width:1px; height:2.4rem; background:linear-gradient(var(--gold-line),transparent)}
+  .names{font-size:clamp(3.6rem,19vw,6.2rem); font-style:italic; font-weight:300; line-height:1.02; color:var(--cream)}
+  .names .amp{display:block; font-size:.38em; font-style:italic; color:var(--gold); margin:.28rem 0}
+  .hero-sub{margin:0 0 1.9rem; font-style:italic; font-size:clamp(1.24rem,4.4vw,1.5rem); color:var(--cream)}
+  .hero-date{
+    font-family:var(--sans); font-size:clamp(.88rem,3.4vw,1.06rem);
+    letter-spacing:.32em; text-indent:.32em; text-transform:uppercase;
+    color:var(--cream); margin-top:2rem;
+  }
+  .hero-city{font-family:var(--sans); font-size:.72rem; letter-spacing:.34em; text-indent:.34em; text-transform:uppercase; color:var(--gold); margin-top:.9rem}
+  .scroll{margin-top:2.6rem; display:flex; justify-content:center; color:var(--gold-soft)}
+  .scroll i{
+    display:block; width:.8rem; height:.8rem;
+    border-right:1px solid currentColor; border-bottom:1px solid currentColor;
+    transform:rotate(45deg); animation:nudge 2.6s ease-in-out infinite;
+  }
+  @keyframes nudge{0%,100%{transform:rotate(45deg) translate(0,0); opacity:.6}50%{transform:rotate(45deg) translate(3px,3px); opacity:1}}
 
   /* ---------- compte à rebours ---------- */
   .count{display:flex; text-align:center; margin-top:1.3rem}
@@ -316,13 +325,13 @@
 <div class="wrap">
 
   <header class="hero">
-    <p class="label rv" style="--d:.35s">Mariage</p>
-    <h1 class="names rv" style="--d:.6s">Taher<span class="amp">&amp;</span>Samar</h1>
-    <p class="hero-sub rv" style="--d:.9s">Ont la joie de vous inviter à célébrer leur union</p>
-    <div class="orn rv" style="--d:1.15s; margin-top:2.2rem" aria-hidden="true"><span>&#9670;</span></div>
-    <p class="hero-date rv" style="--d:1.3s">Le 1<sup>er</sup> novembre 2026 à 21h</p>
-    <p class="hero-city rv" style="--d:1.45s">Sousse</p>
-    <div class="scroll rv" style="--d:1.7s" aria-hidden="true"><i></i></div>
+    <p class="label rv" style="--d:.35s">Save the date</p>
+    <div class="orn rv" style="--d:.55s; margin-bottom:2.2rem" aria-hidden="true"><span>&#9670;</span></div>
+    <p class="hero-sub rv" style="--d:.8s">Nous avons le plaisir de vous inviter à notre mariage</p>
+    <h1 class="names rv" style="--d:1.05s">Taher<span class="amp">&amp;</span>Samar</h1>
+    <p class="hero-date rv" style="--d:1.35s">1 &middot; Novembre &middot; 2026</p>
+    <p class="hero-city rv" style="--d:1.5s">Sousse &middot; 21h</p>
+    <div class="scroll rv" style="--d:1.75s" aria-hidden="true"><i></i></div>
   </header>
 
   <section>
