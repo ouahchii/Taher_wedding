@@ -1,8 +1,7 @@
 # Invitation — Taher & Samar
 
-Invitation de mariage, page unique, sans dépendance à installer.
+Invitation de mariage, page unique, en français, sans dépendance à installer.
 1er novembre 2026, Salle La Marquise, Sousse.
-Bilingue : **arabe par défaut**, français accessible d'un bouton.
 
 ## Mise en ligne (Netlify)
 
@@ -45,9 +44,7 @@ Netlify le repère **en analysant le HTML au moment du déploiement** : il doit
 donc rester écrit en dur dans la page, jamais construit en JavaScript.
 
 Les réponses arrivent dans *Site configuration → Forms*, et par e-mail si la
-notification est configurée. Champs transmis : `presence` (`oui` / `peut` /
-`non`), `nom`, `nb`, `mot`, et `langue` — la langue dans laquelle l'invité a
-rempli le formulaire, pratique pour savoir comment lui répondre.
+notification est configurée. Champs transmis : `presence` (`oui` / `peut` / `non`), `nom`, `nb` et `mot`.
 
 L'envoi se fait en arrière-plan (`fetch` vers `/`), pour que l'invité reste sur
 l'invitation au lieu d'atterrir sur l'accusé de réception de Netlify. Le champ
@@ -58,25 +55,6 @@ l'invitation au lieu d'atterrir sur l'accusé de réception de Netlify. Le champ
 > à l'approche de la date, quitte à passer au forfait payant ce mois-là.
 
 En local, l'envoi échoue forcément : `POST /` n'existe que sur Netlify.
-
-## Les deux langues
-
-L'**arabe est écrit directement dans le HTML** : c'est ce que voit l'invité même si
-le JavaScript échoue. Le français vit dans l'objet `FR` du script, et le bouton
-en bas à gauche bascule d'une langue à l'autre (choix retenu par `localStorage`).
-
-Pour modifier un texte, il faut donc le changer **aux deux endroits** :
-
-- l'arabe dans la balise HTML, repérée par son attribut `data-t="clé"` ;
-- le français à la même `clé` dans l'objet `FR`.
-
-Les phrases construites par le script (messages d'erreur, contenu WhatsApp)
-sont dans `TXT.fr` et `TXT.ar`. Les attributs `data-t-ph` et `data-t-aria` font
-la même chose pour les textes indicatifs des champs et les libellés d'accessibilité.
-
-Côté mise en forme, le bloc CSS `html[lang="ar"]` annule les interlettrages,
-les majuscules et les italiques du thème latin : appliqués à l'arabe, ils
-brisent la ligature des lettres ou produisent une fausse inclinaison.
 
 ## Contenu
 
@@ -90,14 +68,12 @@ brisent la ligature des lettres ou produisent une fausse inclinaison.
 
 ## Notes techniques
 
-- Polices chargées depuis Google Fonts : Amiri (arabe), Cormorant Garamond, Josefin Sans
+- Polices chargées depuis Google Fonts : Cormorant Garamond, Josefin Sans
 - Musique générée par l'API Web Audio, aucun fichier audio
 - Réponses collectées par Netlify Forms, sans serveur à héberger
 - Ouverture : la carte se fend en deux battants (`rotateY` sur ses deux moitiés),
   pendant que la pièce s'assombrit et que deux barres descendent en letterbox
 - Le verrou de défilement double `overflow:hidden` d'un blocage de `wheel` et
   `touchmove` : Safari mobile laisse défiler au doigt sans cela
-- Les moitiés de carte gardent des positions `left`/`right` physiques : elles
-  reconstituent une seule image et ne doivent pas suivre la direction du texte
 
 Créé par Issam Ouahchi

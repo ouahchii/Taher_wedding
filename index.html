@@ -1,26 +1,25 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="fr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>طاهر و سمر — 1 نوفمبر 2026</title>
-<meta name="description" content="يتشرفان بدعوتكم لحضور حفل زفافهما. 1 نوفمبر 2026 — قاعة لا ماركيز، سوسة، تونس">
-<meta property="og:title" content="طاهر و سمر — 1 نوفمبر 2026">
-<meta property="og:description" content="يتشرفان بدعوتكم لحضور حفل زفافهما. قاعة لا ماركيز، سوسة.">
+<title>Taher &amp; Samar — 1er novembre 2026</title>
+<meta name="description" content="Nous avons la joie de vous inviter à célébrer notre union. 1er novembre 2026 — Salle La Marquise, Sousse, Tunisie">
+<meta property="og:title" content="Taher &amp; Samar — 1er novembre 2026">
+<meta property="og:description" content="Nous avons la joie de vous inviter à célébrer notre union. Salle La Marquise, Sousse.">
 <meta property="og:type" content="website">
-<meta property="og:locale" content="ar_TN">
-<meta property="og:locale:alternate" content="fr_FR">
+<meta property="og:locale" content="fr_FR">
 <meta property="og:url" content="https://taher-samar-wedding.netlify.app/">
 <meta property="og:image" content="https://taher-samar-wedding.netlify.app/assets/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="ختم من الشمع عليه عصفوران وقلب">
+<meta property="og:image:alt" content="Sceau de cire doré à deux oiseaux et un cœur">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://taher-samar-wedding.netlify.app/">
 <meta name="theme-color" content="#0F0A06">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Josefin+Sans:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Josefin+Sans:wght@300;400&display=swap" rel="stylesheet">
 <style>
   :root{
     --noir:#0F0A06;
@@ -32,7 +31,6 @@
     --muted:rgba(250,249,247,.72);
     --serif:"Cormorant Garamond", Georgia, serif;
     --sans:"Josefin Sans", "Helvetica Neue", Arial, sans-serif;
-    --ar:"Amiri", "Traditional Arabic", "Times New Roman", serif;
     /* carte d'ouverture : 9/16, et la hauteur des barres cinema */
     --ch:min(80vh,152vw);
     --cw:calc(var(--ch) * .5625);
@@ -86,11 +84,6 @@
 
   /* ---------- hero ---------- */
   .hero{min-height:100svh; display:flex; flex-direction:column; justify-content:center; text-align:center; padding:4rem 0 2.6rem}
-  .basmala{
-    font-family:"Amiri", "Traditional Arabic", serif;
-    font-size:clamp(1.2rem,5.4vw,1.5rem); line-height:1.9;
-    color:var(--gold); margin-bottom:1.8rem; direction:rtl;
-  }
   .hero .label{margin-bottom:1.6rem}
   .names{font-size:clamp(3rem,15vw,4.6rem); font-style:italic; font-weight:300; line-height:1.08; color:var(--cream)}
   .names .amp{display:block; font-size:.42em; font-style:normal; color:var(--gold); margin:.5rem 0}
@@ -251,58 +244,6 @@
   @keyframes breathe{0%,100%{opacity:.5}50%{opacity:1}}
   .tap.off{opacity:0; animation:none}
 
-  /* ---------- selecteur de langue ---------- */
-  .lang{
-    position:fixed; left:1.1rem; bottom:1.1rem; z-index:10;
-    height:3rem; padding:0 1.05rem; border-radius:999px; cursor:pointer;
-    display:grid; place-items:center;
-    font-family:var(--sans); font-weight:300; font-size:.68rem; letter-spacing:.18em;
-    border:1px solid rgba(184,148,90,.6); background:rgba(15,10,6,.7);
-    color:var(--gold); backdrop-filter:blur(10px);
-    transition:background .3s ease;
-  }
-  .lang:hover{background:rgba(184,148,90,.18)}
-  /* en francais, le bouton affiche « العربية » : police arabe, sans interlettrage */
-  html[lang="fr"] .lang{font-family:var(--ar); font-size:1rem; letter-spacing:normal}
-
-  /* ---------- arabe ---------- */
-  /* l'interlettrage et les majuscules brisent la ligature arabe : on les annule */
-  html[lang="ar"] body{font-family:var(--ar); font-size:1.1rem; line-height:1.95}
-  html[lang="ar"] .label,
-  html[lang="ar"] .hero-date,
-  html[lang="ar"] .hero-city,
-  html[lang="ar"] .count small,
-  html[lang="ar"] .step strong,
-  html[lang="ar"] .btn,
-  html[lang="ar"] .field label,
-  html[lang="ar"] footer .credit,
-  html[lang="ar"] .tap{
-    font-family:var(--ar); letter-spacing:normal; text-indent:0; text-transform:none;
-  }
-  /* Amiri n'a pas d'italique : le navigateur l'inclinerait artificiellement */
-  html[lang="ar"] .names,
-  html[lang="ar"] .story h2,
-  html[lang="ar"] .story p,
-  html[lang="ar"] .venue h3,
-  html[lang="ar"] footer .sig,
-  html[lang="ar"] .note{font-style:normal}
-  html[lang="ar"] .choice button,
-  html[lang="ar"] .field input,
-  html[lang="ar"] .field textarea{font-family:var(--ar)}
-  /* l'arabe se lit plus petit a taille egale : on compense */
-  html[lang="ar"] .label{font-size:.94rem}
-  html[lang="ar"] .btn{font-size:.96rem}
-  html[lang="ar"] .field label{font-size:.9rem}
-  html[lang="ar"] .count small{font-size:.8rem}
-  html[lang="ar"] .step strong{font-size:.98rem; letter-spacing:normal}
-  html[lang="ar"] .hero-date{font-size:1.08rem}
-  html[lang="ar"] .hero-city{font-size:1rem}
-  html[lang="ar"] footer .credit{font-size:.8rem}
-  html[lang="ar"] .tap{font-size:.9rem}
-  html[lang="ar"] .names{font-size:clamp(2.6rem,13vw,4rem); line-height:1.35}
-  html[lang="ar"] .names .amp{font-size:.5em; margin:.25rem 0}
-  html[lang="ar"] .story h2{line-height:1.5}
-
   :focus-visible{outline:1px solid var(--gold); outline-offset:3px}
 
   /* ---------- apparitions ---------- */
@@ -358,116 +299,113 @@
   </svg>
 </div>
 <div class="veil" aria-hidden="true"></div>
-<button class="music" id="music" aria-pressed="false" aria-label="تشغيل الموسيقى">&#9834;</button>
-<button class="lang" id="lang" type="button">Français</button>
+<button class="music" id="music" aria-pressed="false" aria-label="Activer la musique">&#9834;</button>
 
 <div class="cover" id="cover">
   <div class="dim" aria-hidden="true"></div>
   <div class="bar t" aria-hidden="true"></div>
   <div class="bar b" aria-hidden="true"></div>
   <div class="card">
-    <button class="closed" id="env" type="button" aria-label="فتح الدعوة" data-t-aria="ariaEnv">
+    <button class="closed" id="env" type="button" aria-label="Ouvrir l'invitation">
       <span class="half l"></span><span class="half r"></span>
     </button>
   </div>
-  <p class="tap" id="tap" data-t="tap">اضغطوا في أي مكان لفتح الدعوة</p>
+  <p class="tap" id="tap">Appuyez n'importe où pour ouvrir</p>
 </div>
 
 <div class="wrap">
 
   <header class="hero">
-    <p class="basmala rv" style="--d:.05s" lang="ar" dir="rtl">بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيم</p>
-    <p class="label rv" style="--d:.35s" data-t="kicker">حفل زفاف</p>
-    <h1 class="names rv" style="--d:.6s" data-t="names">طاهر<span class="amp">و</span>سمر</h1>
-    <p class="hero-sub rv" style="--d:.9s" data-t="sub">يتشرفان بدعوتكم لحضور حفل زفافهما</p>
+    <p class="label rv" style="--d:.35s">Mariage</p>
+    <h1 class="names rv" style="--d:.6s">Taher<span class="amp">&amp;</span>Samar</h1>
+    <p class="hero-sub rv" style="--d:.9s">Ont la joie de vous inviter à célébrer leur union</p>
     <div class="orn rv" style="--d:1.15s; margin-top:2.2rem" aria-hidden="true"><span>&#9670;</span></div>
-    <p class="hero-date rv" style="--d:1.3s" data-t="date">1 نوفمبر 2026 — على الساعة التاسعة ليلاً</p>
-    <p class="hero-city rv" style="--d:1.45s" data-t="city">سوسة</p>
+    <p class="hero-date rv" style="--d:1.3s">Le 1<sup>er</sup> novembre 2026 à 21h</p>
+    <p class="hero-city rv" style="--d:1.45s">Sousse</p>
     <div class="scroll rv" style="--d:1.7s" aria-hidden="true"><i></i></div>
   </header>
 
   <section>
-    <p class="label rv" data-t="cdTitle">اقترب الموعد</p>
+    <p class="label rv">Le grand jour approche</p>
     <div class="count rv" id="count">
-      <div><b data-j>—</b><small data-t="cdD">يوم</small></div>
-      <div><b data-h>—</b><small data-t="cdH">ساعة</small></div>
-      <div><b data-m>—</b><small data-t="cdM">دقيقة</small></div>
-      <div><b data-s>—</b><small data-t="cdS">ثانية</small></div>
+      <div><b data-j>—</b><small>jours</small></div>
+      <div><b data-h>—</b><small>heures</small></div>
+      <div><b data-m>—</b><small>minutes</small></div>
+      <div><b data-s>—</b><small>secondes</small></div>
     </div>
   </section>
 
   <section class="story">
-    <h2 class="rv" data-t="storyTitle">قصّتنا</h2>
-    <p class="rv" data-t="story1">التقى طريقانا في الوقت المناسب، ومنذ ذلك الحين قرّبتنا كل خطوة من هذا اليوم الكبير.</p>
-    <p class="rv" data-t="story2">يمثّل الأول من نوفمبر بدايةً جديدة بالنسبة إلينا، تاريخٌ اخترناه بالقلب للاحتفال بزفافنا.</p>
+    <h2 class="rv">L'histoire derrière nos prénoms</h2>
+    <p class="rv">Nos deux chemins se sont croisés au bon moment. Depuis, chaque étape nous a rapprochés jusqu'à ce grand jour.</p>
+    <p class="rv">Le 1<sup>er</sup> novembre symbolise pour nous un nouveau départ, une date choisie avec le cœur pour célébrer notre union.</p>
     <div class="orn rv" style="margin-top:2.4rem" aria-hidden="true"><span>&#9670;</span></div>
   </section>
 
   <section>
-    <p class="label rv" data-t="progTitle">برنامج السهرة</p>
+    <p class="label rv">Déroulement de la soirée</p>
     <div class="steps">
-      <div class="step rv"><b data-t="t1">21:00</b><strong data-t="step1">عقد القران</strong></div>
-      <div class="step rv"><b data-t="t2">21:30</b><strong data-t="step2">الحفل</strong></div>
+      <div class="step rv"><b>21h</b><strong>Contrat de mariage</strong></div>
+      <div class="step rv"><b>21h30</b><strong>Célébration</strong></div>
     </div>
   </section>
 
   <section class="venue">
-    <p class="label rv" data-t="venueTitle">المكان</p>
-    <h3 class="rv" data-t="venueName">قاعة لا ماركيز</h3>
-    <address class="rv" data-t="venueAddr">سوسة، تونس</address>
+    <p class="label rv">Le lieu</p>
+    <h3 class="rv">Salle La Marquise</h3>
+    <address class="rv">Sousse, Tunisie</address>
     <div class="actions rv">
-      <a class="btn" id="mapLink" href="#" target="_blank" rel="noopener" data-t="map">الاتجاهات على الخريطة</a>
+      <a class="btn" id="mapLink" href="#" target="_blank" rel="noopener">Ouvrir l'itinéraire</a>
     </div>
   </section>
 
   <section>
-    <p class="label rv" data-t="rsvpTitle">ردّكم</p>
+    <p class="label rv">Votre réponse</p>
     <!-- Netlify repère ce formulaire en analysant le HTML au déploiement :
          il doit donc exister en dur dans la page, pas être construit en JS. -->
     <form name="rsvp" method="POST" data-netlify="true"
           data-netlify-honeypot="bot-field" style="margin-top:1.4rem">
       <input type="hidden" name="form-name" value="rsvp">
       <input type="hidden" name="presence" id="presence">
-      <input type="hidden" name="langue" id="langueChamp" value="ar">
       <p hidden aria-hidden="true">
         <label>Ne pas remplir : <input name="bot-field" tabindex="-1" autocomplete="off"></label>
       </p>
 
       <div class="field rv">
-        <label id="lblRep" data-t="rsvpQ">هل ستشرّفوننا بحضوركم؟</label>
+        <label id="lblRep">Serez-vous des nôtres&nbsp;?</label>
         <div class="choice" role="group" aria-labelledby="lblRep">
-          <button type="button" data-rep="oui" aria-pressed="false" data-t="yes">نعم، بكل سرور</button>
-          <button type="button" data-rep="peut" aria-pressed="false" data-t="maybe">ربّما</button>
-          <button type="button" data-rep="non" aria-pressed="false" data-t="no">لن أتمكّن للأسف</button>
+          <button type="button" data-rep="oui" aria-pressed="false">Oui, avec joie</button>
+          <button type="button" data-rep="peut" aria-pressed="false">Peut-être</button>
+          <button type="button" data-rep="non" aria-pressed="false">Je ne pourrai pas</button>
         </div>
       </div>
 
       <div class="rest" id="rest">
         <div class="field">
-          <label for="nom" data-t="lblName">الاسم</label>
-          <input id="nom" name="nom" type="text" autocomplete="name" placeholder="الاسم واللقب" data-t-ph="phName">
+          <label for="nom">Votre nom</label>
+          <input id="nom" name="nom" type="text" autocomplete="name" placeholder="Prénom et nom">
         </div>
         <div class="field" id="nbField">
-          <label for="nb" data-t="lblNb">عدد الأشخاص</label>
+          <label for="nb">Nombre de personnes</label>
           <input id="nb" name="nb" type="number" min="1" max="10" value="1" inputmode="numeric">
         </div>
         <div class="field">
-          <label for="mot" data-t="lblWord">كلمة بمناسبة الفرح</label>
-          <textarea id="mot" name="mot" placeholder="اختياري" data-t-ph="phWord"></textarea>
+          <label for="mot">Un petit mot</label>
+          <textarea id="mot" name="mot" placeholder="Optionnel"></textarea>
         </div>
         <div class="actions">
-          <button class="btn btn-solid" id="send" type="submit" data-t="send">إرسال الرد</button>
+          <button class="btn btn-solid" id="send" type="submit">Envoyer ma réponse</button>
         </div>
-        <p class="note" id="note" data-t="noteIdle">ردّكم يصلنا مباشرةً.</p>
+        <p class="note" id="note">Votre réponse nous parvient directement.</p>
       </div>
     </form>
   </section>
 
   <footer>
     <div class="orn rv" aria-hidden="true"><span>&#9670;</span></div>
-    <p class="sig rv" data-t="sig">طاهر و سمر</p>
-    <p class="label rv" style="margin-top:1.2rem" data-t="motto">روحان في طريق واحد</p>
-    <p class="credit rv" data-t="credit">من إنجاز عصام الوحشي</p>
+    <p class="sig rv">Taher &amp; Samar</p>
+    <p class="label rv" style="margin-top:1.2rem">Deux âmes, un même chemin</p>
+    <p class="credit rv">Créé par Issam Ouahchi</p>
   </footer>
 
 </div>
@@ -480,102 +418,6 @@ const CONFIG = {
   photo: ""   // adresse d'une photo pour le fond, ex : "photo.jpg"
 };
 /* ==================================== */
-
-/* ============ langues ============ */
-/* L'arabe est écrit directement dans le HTML : c'est la version par défaut,
-   affichée même si le JavaScript échoue. Le dictionnaire ci-dessous ne porte
-   que le français ; l'arabe est relevé dans le DOM au chargement. */
-const FR = {
-  tap:"Appuyez n'importe où pour ouvrir",
-  kicker:"Mariage",
-  names:'Taher<span class="amp">&amp;</span>Samar',
-  sub:"Ont la joie de vous inviter à célébrer leur union",
-  date:"Le 1<sup>er</sup> novembre 2026 à 21h",
-  city:"Sousse",
-  cdTitle:"Le grand jour approche",
-  cdD:"jours", cdH:"heures", cdM:"minutes", cdS:"secondes",
-  storyTitle:"L'histoire derrière nos prénoms",
-  story1:"Nos deux chemins se sont croisés au bon moment. Depuis, chaque étape nous a rapprochés jusqu'à ce grand jour.",
-  story2:"Le 1<sup>er</sup> novembre symbolise pour nous un nouveau départ, une date choisie avec le cœur pour célébrer notre union.",
-  progTitle:"Déroulement de la soirée",
-  t1:"21h", t2:"21h30",
-  step1:"Contrat de mariage", step2:"Célébration",
-  venueTitle:"Le lieu",
-  venueName:"Salle La Marquise",
-  venueAddr:"Sousse, Tunisie",
-  map:"Ouvrir l'itinéraire",
-  rsvpTitle:"Votre réponse",
-  rsvpQ:"Serez-vous des nôtres&nbsp;?",
-  yes:"Oui, avec joie", maybe:"Peut-être", no:"Je ne pourrai pas",
-  lblName:"Votre nom", phName:"Prénom et nom",
-  lblNb:"Nombre de personnes",
-  lblWord:"Un petit mot", phWord:"Optionnel",
-  send:"Envoyer ma réponse",
-  noteIdle:"Votre réponse nous parvient directement.",
-  sig:"Taher &amp; Samar",
-  motto:"Deux âmes, un même chemin",
-  credit:"Créé par Issam Ouahchi",
-  ariaEnv:"Ouvrir l'invitation"
-};
-const AR = {};   /* relevé depuis le HTML au chargement */
-
-/* phrases construites en JavaScript, dans les deux langues */
-const TXT = {
-  fr:{
-    title:"Taher & Samar — 1er novembre 2026",
-    pickOne:"Merci de choisir une réponse.",
-    needName:"Merci d'indiquer votre nom avant d'envoyer.",
-    sending:"Envoi en cours…",
-    thanks:"Merci, votre réponse est bien arrivée. À très bientôt.",
-    sendFail:"L'envoi n'a pas abouti. Vérifiez votre connexion et réessayez.",
-    musicOn:"Activer la musique", musicOff:"Couper la musique"
-  },
-  ar:{
-    title:"طاهر و سمر — 1 نوفمبر 2026",
-    pickOne:"يرجى اختيار أحد الردود.",
-    needName:"يرجى كتابة الاسم قبل الإرسال.",
-    sending:"جارٍ الإرسال…",
-    thanks:"شكراً لكم، وصلنا ردّكم. إلى اللقاء قريباً.",
-    sendFail:"تعذّر الإرسال. تحقّقوا من الاتصال وأعيدوا المحاولة.",
-    musicOn:"تشغيل الموسيقى", musicOff:"إيقاف الموسيقى"
-  }
-};
-
-let langue = "ar";
-const btnLangue = document.getElementById('lang');
-
-document.querySelectorAll('[data-t]').forEach(el => AR[el.dataset.t] = el.innerHTML);
-document.querySelectorAll('[data-t-ph]').forEach(el => AR[el.dataset.tPh] = el.placeholder);
-document.querySelectorAll('[data-t-aria]').forEach(el => AR[el.dataset.tAria] = el.getAttribute('aria-label'));
-
-function setLangue(l){
-  langue = l;
-  const D = (l === 'fr') ? FR : AR;
-  const root = document.documentElement;
-  root.lang = l;
-  root.dir = (l === 'ar') ? 'rtl' : 'ltr';
-  document.title = TXT[l].title;
-  document.querySelectorAll('[data-t]').forEach(el => {
-    if (D[el.dataset.t] != null) el.innerHTML = D[el.dataset.t];
-  });
-  document.querySelectorAll('[data-t-ph]').forEach(el => {
-    if (D[el.dataset.tPh] != null) el.placeholder = D[el.dataset.tPh];
-  });
-  document.querySelectorAll('[data-t-aria]').forEach(el => {
-    if (D[el.dataset.tAria] != null) el.setAttribute('aria-label', D[el.dataset.tAria]);
-  });
-  btnLangue.textContent = (l === 'ar') ? "Français" : "العربية";
-  const champLangue = document.getElementById('langueChamp');
-  if (champLangue) champLangue.value = l;
-  if (window.syncMusique) window.syncMusique();
-  try{ localStorage.setItem('langue', l); }catch(e){}
-}
-
-btnLangue.onclick = () => setLangue(langue === 'ar' ? 'fr' : 'ar');
-let langueGardee = null;
-try{ langueGardee = localStorage.getItem('langue'); }catch(e){}
-setLangue(langueGardee === 'fr' ? 'fr' : 'ar');
-/* ================================== */
 
 if (CONFIG.photo){
   document.getElementById('bg').style.backgroundImage = 'url("' + CONFIG.photo + '")';
@@ -677,16 +519,15 @@ const form = document.querySelector('form[name="rsvp"]');
 const envoi = document.getElementById('send');
 form.addEventListener('submit', async e => {
   e.preventDefault();
-  const T = TXT[langue];
   const nom = document.getElementById('nom').value.trim();
-  if (!reponse){ note.textContent = T.pickOne; return; }
+  if (!reponse){ note.textContent = "Merci de choisir une réponse."; return; }
   if (!nom){
-    note.textContent = T.needName;
+    note.textContent = "Merci d'indiquer votre nom avant d'envoyer.";
     document.getElementById('nom').focus();
     return;
   }
   envoi.disabled = true;
-  note.textContent = T.sending;
+  note.textContent = "Envoi en cours…";
   try{
     const r = await fetch('/', {
       method: 'POST',
@@ -694,10 +535,10 @@ form.addEventListener('submit', async e => {
       body: new URLSearchParams(new FormData(form)).toString()
     });
     if (!r.ok) throw new Error(r.status);
-    note.textContent = T.thanks;
+    note.textContent = "Merci, votre réponse est bien arrivée. À très bientôt.";
   }catch(err){
     envoi.disabled = false;
-    note.textContent = T.sendFail;
+    note.textContent = "L'envoi n'a pas abouti. Vérifiez votre connexion et réessayez.";
   }
 });
 
@@ -764,7 +605,7 @@ form.addEventListener('submit', async e => {
     timer = setTimeout(schedule, 90);
   }
   window.syncMusique = () => {
-    btn.setAttribute('aria-label', on ? TXT[langue].musicOff : TXT[langue].musicOn);
+    btn.setAttribute('aria-label', on ? "Couper la musique" : "Activer la musique");
   };
   btn.onclick = () => {
     if (!ctx){
