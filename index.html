@@ -417,7 +417,6 @@
     <address class="rv" data-t="venueAddr">سوسة، تونس</address>
     <div class="actions rv">
       <a class="btn" id="mapLink" href="#" target="_blank" rel="noopener" data-t="map">الاتجاهات على الخريطة</a>
-      <a class="btn" id="calLink" href="#" target="_blank" rel="noopener" data-t="cal">إضافة إلى التقويم</a>
     </div>
   </section>
 
@@ -457,9 +456,7 @@
           <textarea id="mot" name="mot" placeholder="اختياري" data-t-ph="phWord"></textarea>
         </div>
         <div class="actions">
-          <!-- sans type explicite, « Copier » vaudrait submit et enverrait le formulaire -->
           <button class="btn btn-solid" id="send" type="submit" data-t="send">إرسال الرد</button>
-          <button class="btn" id="copy" type="button" data-t="copy">نسخ الرد</button>
         </div>
         <p class="note" id="note" data-t="noteIdle">ردّكم يصلنا مباشرةً.</p>
       </div>
@@ -478,11 +475,8 @@
 <script>
 /* ============ à modifier ============ */
 const CONFIG = {
-  maries: "Taher & Samar",
   dateISO: "2026-11-01T21:00:00+01:00",
-  finISO:  "2026-11-02T03:00:00+01:00",
   lieu: "Salle La Marquise, Sousse, Tunisie",
-  mariesAr: "طاهر و سمر",
   photo: ""   // adresse d'une photo pour le fond, ex : "photo.jpg"
 };
 /* ==================================== */
@@ -510,14 +504,13 @@ const FR = {
   venueName:"Salle La Marquise",
   venueAddr:"Sousse, Tunisie",
   map:"Ouvrir l'itinéraire",
-  cal:"Ajouter à mon agenda",
   rsvpTitle:"Votre réponse",
   rsvpQ:"Serez-vous des nôtres&nbsp;?",
   yes:"Oui, avec joie", maybe:"Peut-être", no:"Je ne pourrai pas",
   lblName:"Votre nom", phName:"Prénom et nom",
   lblNb:"Nombre de personnes",
   lblWord:"Un petit mot", phWord:"Optionnel",
-  send:"Envoyer ma réponse", copy:"Copier ma réponse",
+  send:"Envoyer ma réponse",
   noteIdle:"Votre réponse nous parvient directement.",
   sig:"Taher &amp; Samar",
   motto:"Deux âmes, un même chemin",
@@ -534,13 +527,8 @@ const TXT = {
     needName:"Merci d'indiquer votre nom avant d'envoyer.",
     sending:"Envoi en cours…",
     thanks:"Merci, votre réponse est bien arrivée. À très bientôt.",
-    sendFail:"L'envoi n'a pas abouti. Réessayez, ou utilisez le bouton « Copier ma réponse ».",
-    copied:"Réponse copiée, vous pouvez la coller où vous voulez.",
-    copyFail:"La copie n'a pas fonctionné, recopiez votre réponse à la main.",
-    musicOn:"Activer la musique", musicOff:"Couper la musique",
-    msgHead:() => "Réponse pour le mariage de " + CONFIG.maries,
-    msgName:"Nom", msgPres:"Présence", msgNb:"Nombre de personnes", msgWord:"Message",
-    presYes:"oui", presMaybe:"à confirmer", presNo:"non, avec regrets"
+    sendFail:"L'envoi n'a pas abouti. Vérifiez votre connexion et réessayez.",
+    musicOn:"Activer la musique", musicOff:"Couper la musique"
   },
   ar:{
     title:"طاهر و سمر — 1 نوفمبر 2026",
@@ -548,13 +536,8 @@ const TXT = {
     needName:"يرجى كتابة الاسم قبل الإرسال.",
     sending:"جارٍ الإرسال…",
     thanks:"شكراً لكم، وصلنا ردّكم. إلى اللقاء قريباً.",
-    sendFail:"تعذّر الإرسال. أعيدوا المحاولة، أو استعملوا زر «نسخ الرد».",
-    copied:"تم نسخ الرد، يمكنكم لصقه أينما شئتم.",
-    copyFail:"تعذّر النسخ، انسخوا ردّكم يدويّاً.",
-    musicOn:"تشغيل الموسيقى", musicOff:"إيقاف الموسيقى",
-    msgHead:() => "ردّ على دعوة زفاف " + CONFIG.mariesAr,
-    msgName:"الاسم", msgPres:"الحضور", msgNb:"عدد الأشخاص", msgWord:"رسالة",
-    presYes:"نعم", presMaybe:"غير مؤكّد", presNo:"لن أتمكّن، مع الاعتذار"
+    sendFail:"تعذّر الإرسال. تحقّقوا من الاتصال وأعيدوا المحاولة.",
+    musicOn:"تشغيل الموسيقى", musicOff:"إيقاف الموسيقى"
   }
 };
 
@@ -601,13 +584,6 @@ if (CONFIG.photo){
 
 document.getElementById('mapLink').href =
   "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(CONFIG.lieu);
-
-const gcal = d => new Date(d).toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'');
-document.getElementById('calLink').href =
-  "https://calendar.google.com/calendar/render?action=TEMPLATE"
-  + "&text=" + encodeURIComponent("Mariage de " + CONFIG.maries)
-  + "&dates=" + gcal(CONFIG.dateISO) + "/" + gcal(CONFIG.finISO)
-  + "&location=" + encodeURIComponent(CONFIG.lieu);
 
 /* compte à rebours */
 const target = new Date(CONFIG.dateISO).getTime();
@@ -695,19 +671,6 @@ function setReponse(v){
 }
 boutons.forEach(b => b.onclick = () => setReponse(b.dataset.rep));
 
-function message(){
-  const T = TXT[langue];
-  const nom = document.getElementById('nom').value.trim() || "—";
-  const mot = document.getElementById('mot').value.trim();
-  const nb  = document.getElementById('nb').value || 1;
-  let t = T.msgHead() + "\n" + T.msgName + " : " + nom + "\n";
-  if (reponse === "oui")       t += T.msgPres + " : " + T.presYes   + "\n" + T.msgNb + " : " + nb + "\n";
-  else if (reponse === "peut") t += T.msgPres + " : " + T.presMaybe + "\n" + T.msgNb + " : " + nb + "\n";
-  else                         t += T.msgPres + " : " + T.presNo + "\n";
-  if (mot) t += T.msgWord + " : " + mot;
-  return t.trim();
-}
-
 /* Envoi en arriere-plan : l'invite reste sur l'invitation au lieu d'atterrir
    sur l'accuse de reception de Netlify. */
 const form = document.querySelector('form[name="rsvp"]');
@@ -737,15 +700,6 @@ form.addEventListener('submit', async e => {
     note.textContent = T.sendFail;
   }
 });
-
-document.getElementById('copy').onclick = async () => {
-  try{
-    await navigator.clipboard.writeText(message());
-    note.textContent = TXT[langue].copied;
-  }catch(e){
-    note.textContent = TXT[langue].copyFail;
-  }
-};
 
 /* musique de synthèse, aucun fichier externe */
 (() => {

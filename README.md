@@ -28,10 +28,7 @@ Tout est regroupé dans le bloc `CONFIG`, en haut du script d'`index.html` :
 
 | champ      | rôle                                                      |
 |------------|-----------------------------------------------------------|
-| `maries`   | noms latins, repris dans le message de réponse français    |
-| `mariesAr` | noms arabes, repris dans le message de réponse arabe       |
 | `dateISO`  | date et heure, utilisée par le compte à rebours            |
-| `finISO`   | fin de la soirée, pour le lien agenda                      |
 | `lieu`     | adresse, utilisée par le lien Google Maps                  |
 | `photo`    | image de fond du hero ; vide = silhouette dessinée         |
 
@@ -58,8 +55,7 @@ l'invitation au lieu d'atterrir sur l'accusé de réception de Netlify. Le champ
 
 > ⚠️ Le forfait gratuit plafonne à **100 réponses par mois**. Les réponses d'un
 > mariage se concentrent sur les semaines qui précèdent : surveillez le compteur
-> à l'approche de la date, quitte à passer au forfait payant ce mois-là. Le
-> bouton « Copier ma réponse » reste le filet de secours.
+> à l'approche de la date, quitte à passer au forfait payant ce mois-là.
 
 En local, l'envoi échoue forcément : `POST /` n'existe que sur Netlify.
 
